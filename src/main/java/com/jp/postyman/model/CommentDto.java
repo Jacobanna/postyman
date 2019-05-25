@@ -1,16 +1,10 @@
-package com.jp.postyman.domain;
+package com.jp.postyman.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class CommentDto {
     private int postId;
     private int commentId;

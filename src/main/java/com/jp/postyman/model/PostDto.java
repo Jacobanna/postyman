@@ -1,16 +1,10 @@
-package com.jp.postyman.domain;
+package com.jp.postyman.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class PostDto {
     private int postId;
     private String content;
