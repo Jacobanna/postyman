@@ -8,9 +8,12 @@ import java.time.LocalDateTime;
 @Data
 @Entity(name = "comments")
 public class Comment {
-    @EmbeddedId
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private CommentId commentId;
+    private int commentId;
+    @ManyToOne
+    @JoinColumn(name = "post", nullable = false)
+    private Post post;
     private String response;
     private String graphicUrl;
     private int authorId;

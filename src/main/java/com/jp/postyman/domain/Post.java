@@ -18,6 +18,6 @@ public class Post {
     @JoinColumn(name = "author", nullable = false)
     private User author;
     private LocalDateTime datePosted;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-//    private List<CommentId> comments;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Comment> comments;
 }

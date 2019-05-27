@@ -1,7 +1,6 @@
 package com.jp.postyman.bootstrap;
 
 import com.jp.postyman.domain.Comment;
-import com.jp.postyman.domain.CommentId;
 import com.jp.postyman.domain.Post;
 import com.jp.postyman.domain.User;
 import com.jp.postyman.repository.CommentRepository;
@@ -97,15 +96,41 @@ public class Bootstrap implements CommandLineRunner {
 
         System.out.println("Data loaded - " + postRepository.count() + " elements added to Posts table.");
 
-        //todo For testing compound id
-        CommentId commentId = new CommentId();
-        commentId.setPrimaryCommentId(1);
-        commentId.setPost(1);
-        Comment comment = new Comment();
-        comment.setAuthorId(1);
-        comment.setCommentId(commentId);
-        comment.setDateCommented(LocalDateTime.now());
-        comment.setResponse("I don't think so.");
-        commentRepository.save(comment);
+        Comment user1post1Comment1 = new Comment();
+        user1post1Comment1.setCommentId(1);
+        user1post1Comment1.setPost(user1Post1);
+        user1post1Comment1.setResponse("Ahahahha");
+        user1post1Comment1.setGraphicUrl("www.graphic1.jpg");
+        user1post1Comment1.setAuthorId(user2.getUserId());
+        user1post1Comment1.setDateCommented(LocalDateTime.now());
+        commentRepository.save(user1post1Comment1);
+
+        Comment user1post1Comment2 = new Comment();
+        user1post1Comment2.setCommentId(2);
+        user1post1Comment2.setPost(user1Post1);
+        user1post1Comment2.setResponse("Nice");
+        user1post1Comment2.setGraphicUrl("www.graphic2.jpg");
+        user1post1Comment2.setAuthorId(user3.getUserId());
+        user1post1Comment2.setDateCommented(LocalDateTime.now());
+        commentRepository.save(user1post1Comment2);
+
+        Comment user2post1Comment1 = new Comment();
+        user2post1Comment1.setCommentId(3);
+        user2post1Comment1.setPost(user2Post1);
+        user2post1Comment1.setResponse("WOW");
+        user2post1Comment1.setGraphicUrl("www.graphic3.jpg");
+        user2post1Comment1.setAuthorId(user3.getUserId());
+        user2post1Comment1.setDateCommented(LocalDateTime.now());
+        commentRepository.save(user2post1Comment1);
+
+        Comment user3post1Comment1 = new Comment();
+        user3post1Comment1.setCommentId(4);
+        user3post1Comment1.setPost(user3Post1);
+        user3post1Comment1.setResponse("Incredible!");
+        user3post1Comment1.setAuthorId(user1.getUserId());
+        user3post1Comment1.setDateCommented(LocalDateTime.now());
+        commentRepository.save(user3post1Comment1);
+
+        System.out.println("Data loaded - " + commentRepository.count() + " elements added to Comments table.");
     }
 }
