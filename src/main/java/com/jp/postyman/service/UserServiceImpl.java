@@ -11,24 +11,23 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
     }
 
     @Override
     public List<UserDto> getAllUsers() {
         return userRepository.findAll().stream()
-                .map(userMapper::userToUserDto)
+                //To jest okej? Czy powinienem stworzyć obiekt UserMapper w tej klasie?
+                .map(UserMapper.INSTANCE::userToUserDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public UserDto getUserById(int id) {
         return userRepository.findById(id)
-                .map(userMapper::userToUserDto)
+                .map(UserMapper.INSTANCE::userToUserDto)
                 .orElseThrow(RuntimeException::new);
     }
 }

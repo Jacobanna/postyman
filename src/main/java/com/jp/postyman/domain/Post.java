@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity(name = "posts")
@@ -13,6 +14,10 @@ public class Post {
     private int postId;
     private String content;
     private String graphicUrl;
-    private int authorId;
+    @ManyToOne
+    @JoinColumn(name = "author", nullable = false)
+    private User author;
     private LocalDateTime datePosted;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+//    private List<CommentId> comments;
 }
