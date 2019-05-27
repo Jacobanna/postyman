@@ -19,4 +19,14 @@ public class User {
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private Set<Post> posts;
+    @ManyToMany
+    @JoinTable(name = "users_friends",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id"))
+    private Set<User> userFriends;
+    @ManyToMany
+    @JoinTable(name = "users_friends",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id"))
+    private Set<User> friendsOfUser;
 }

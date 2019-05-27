@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class Bootstrap implements CommandLineRunner {
@@ -53,7 +55,26 @@ public class Bootstrap implements CommandLineRunner {
         user3.setEmail("bethany@email.com");
         userRepository.save(user3);
 
-        System.out.println("Data loaded - " + userRepository.count() + " elements added to Users table.");
+        Set<User> user1Friends = new HashSet<>();
+        user1Friends.add(user2);
+        user1Friends.add(user3);
+        user1.setUserFriends(user1Friends);
+        userRepository.save(user1);
+
+        Set<User> user2Friends = new HashSet<>();
+        user2Friends.add(user3);
+        user2.setUserFriends(user2Friends);
+        userRepository.save(user2);
+
+        //todo kiedy dodaję odwrotną relację do tego co już jest dodane wyskakuje error java.lang.StackOverflowError: null
+//        Set<User> user3Friends = new HashSet<>();
+//        user3Friends.add(user1);
+//        user3.setUserFriends(user3Friends);
+//        userRepository.save(user3);
+
+        System.out.println("Data loaded - " + userRepository.count() + " elements added to Users table " +
+                "(Users_Friends populated as well).");
+
 
         Post user1Post1 = new Post();
         user1Post1.setPostId(1);
