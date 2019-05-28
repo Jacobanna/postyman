@@ -13,7 +13,8 @@ public class UserDto {
     private LocalDate dateJoined;
     private String email;
     //todo tutaj nie powinno być
-    //private Set<Post> posts;
-    //prawda? tego Setu używam tylko żeby połączyć tablice w bazie dancych.
+    //todo private Set<Post> posts;
+    //todo prawda? tego Setu używam tylko żeby połączyć tablice w bazie danych.
+    //todo i to samo z Set<User> userFollows.
 
 }

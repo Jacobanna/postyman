@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity(name = "posts")
@@ -19,5 +19,5 @@ public class Post {
     private User author;
     private LocalDateTime datePosted;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<Comment> comments;
+    private Set<Comment> comments;
 }
