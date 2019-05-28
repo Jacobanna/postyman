@@ -17,8 +17,6 @@ public class User {
     private String profilePhotoUrl;
     private LocalDate dateJoined;
     private String email;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
-    private Set<Post> posts;
     @ManyToMany
     @JoinTable(name = "users_following",
             joinColumns = @JoinColumn(name = "user_id"),
