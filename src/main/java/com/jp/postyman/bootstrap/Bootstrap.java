@@ -55,25 +55,30 @@ public class Bootstrap implements CommandLineRunner {
         user3.setEmail("bethany@email.com");
         userRepository.save(user3);
 
+        System.out.println(userRepository.count() + " elements added to Users table.");
+
         Set<User> user1Friends = new HashSet<>();
         user1Friends.add(user2);
         user1Friends.add(user3);
-        user1.setUserFriends(user1Friends);
+        user1.setUserFollows(user1Friends);
         userRepository.save(user1);
 
         Set<User> user2Friends = new HashSet<>();
         user2Friends.add(user3);
-        user2.setUserFriends(user2Friends);
+        user2.setUserFollows(user2Friends);
         userRepository.save(user2);
 
-        //todo kiedy dodaję odwrotną relację do tego co już jest dodane wyskakuje error java.lang.StackOverflowError: null
-//        Set<User> user3Friends = new HashSet<>();
-//        user3Friends.add(user1);
-//        user3.setUserFriends(user3Friends);
-//        userRepository.save(user3);
+        Set<User> user3Friends = new HashSet<>();
+        user3Friends.add(user1);
+        user3.setUserFollows(user3Friends);
+        userRepository.save(user3);
 
-        System.out.println("Data loaded - " + userRepository.count() + " elements added to Users table " +
-                "(Users_Friends populated as well).");
+        Set<User> user3FriendsAgain = new HashSet<>();
+        user3FriendsAgain.add(user1);
+        user3.setUserFollows(user3FriendsAgain);
+        userRepository.save(user3);
+
+        System.out.println("Connections between Users added.");
 
 
         Post user1Post1 = new Post();
@@ -115,7 +120,7 @@ public class Bootstrap implements CommandLineRunner {
         user3Post1.setDatePosted(LocalDateTime.now());
         postRepository.save(user3Post1);
 
-        System.out.println("Data loaded - " + postRepository.count() + " elements added to Posts table.");
+        System.out.println(postRepository.count() + " elements added to Posts table.");
 
         Comment user1post1Comment1 = new Comment();
         user1post1Comment1.setCommentId(1);
@@ -152,6 +157,6 @@ public class Bootstrap implements CommandLineRunner {
         user3post1Comment1.setDateCommented(LocalDateTime.now());
         commentRepository.save(user3post1Comment1);
 
-        System.out.println("Data loaded - " + commentRepository.count() + " elements added to Comments table.");
+        System.out.println(commentRepository.count() + " elements added to Comments table.");
     }
 }

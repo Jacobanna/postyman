@@ -20,13 +20,19 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private Set<Post> posts;
     @ManyToMany
-    @JoinTable(name = "users_friends",
+    @JoinTable(name = "users_following",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "friend_id"))
-    private Set<User> userFriends;
-    @ManyToMany
-    @JoinTable(name = "users_friends",
-            joinColumns = @JoinColumn(name = "friend_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> friendsOfUser;
+            inverseJoinColumns = @JoinColumn(name = "following_id"))
+    private Set<User> userFollows;
+
+    @Override
+    public int hashCode() {
+        int result = userId;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (profilePhotoUrl != null ? profilePhotoUrl.hashCode() : 0);
+        result = 31 * result + (dateJoined != null ? dateJoined.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        return result;
+    }
 }
