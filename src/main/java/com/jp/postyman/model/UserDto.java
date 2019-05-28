@@ -12,9 +12,6 @@ public class UserDto {
     private String profilePhotoUrl;
     private LocalDate dateJoined;
     private String email;
-    //todo tutaj nie powinno być
-    //todo private Set<Post> posts;
-    //todo prawda? tego Setu używam tylko żeby połączyć tablice w bazie danych.
-    //todo i to samo z Set<User> userFollows.
+    //TODO czy chcę tu mieć Set<User> userFollows?
 
 }

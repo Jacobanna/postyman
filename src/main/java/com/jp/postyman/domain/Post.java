@@ -14,6 +14,9 @@ public class Post {
     private int postId;
     private String content;
     private String graphicUrl;
+    //TODO Po usunięciu z Usera List<Post> posts nie potrafię zrobić DELETE CASCADE (jak usunę Usera chcę usunąć
+    // wszystkie jego posty. Da się to jakoś zrobić bez tej drugiej strony połączenia? Albo po prostu ręcznie to
+    // robić? W sensie jak będę miał DELETE na Userze to muszę zadbać o to żeby usunąć wszystkie jego posty?
     @ManyToOne
     @JoinColumn(name = "author", nullable = false)
     private User author;
