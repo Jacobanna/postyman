@@ -21,6 +21,6 @@ public class Post {
     @JoinColumn(name = "author", nullable = false)
     private User author;
     private LocalDateTime datePosted;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private Set<Comment> comments;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+//    private Set<Comment> comments;
 }
