@@ -29,7 +29,7 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto createUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
