@@ -1,5 +1,6 @@
 package com.jp.postyman.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class User {
     private String profilePhotoUrl;
     private LocalDate dateJoined;
     private String email;
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "users_following",
             joinColumns = @JoinColumn(name = "user_id"),
