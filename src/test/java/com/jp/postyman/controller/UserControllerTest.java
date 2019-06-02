@@ -24,12 +24,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class UserControllerTest {
 
-    public static final String NAME = "Martha";
-    public static final int USER_ID = 1;
-    public static final String EMAIL = "martha@email.com";
-    public static final String PASSWORD = "koos";
-    public static final String PHOTO_URL = "www.example/1.jpg";
-    public static final LocalDate DATE_JOINED = LocalDate.now();
+    private static final String NAME = "Martha";
+    private static final int USER_ID = 1;
+    private static final String EMAIL = "martha@email.com";
+    private static final String PASSWORD = "koos";
+    private static final String PHOTO_URL = "www.example/1.jpg";
+    private static final LocalDate DATE_JOINED = LocalDate.now();
     @Mock
     UserService userService;
 
@@ -102,7 +102,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.email", equalTo(EMAIL)))
                 .andExpect(jsonPath("$.password", equalTo(PASSWORD)))
                 .andExpect(jsonPath("$.profilePhotoUrl", equalTo(PHOTO_URL)));
-        //TODO error z konwersją, mogę coś z tym zrobić? Nie mam za bardzo pomysłu jak to zrobić "ładnie"
+                //TODO error z konwersją, mogę coś z tym zrobić? Nie mam za bardzo pomysłu jak to zrobić "ładnie"
 //                .andExpect(jsonPath("$.dateJoined", equalTo(DATE_JOINED)));
     }
 }

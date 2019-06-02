@@ -1,5 +1,6 @@
 package com.jp.postyman.service;
 
+import com.jp.postyman.domain.Post;
 import com.jp.postyman.domain.User;
 import com.jp.postyman.mapper.PostMapper;
 import com.jp.postyman.model.PostDto;
@@ -17,13 +18,12 @@ public class PostServiceImpl implements PostService {
         this.postRepository = postRepository;
     }
 
-//    @Override
-//    public List<PostDto> getAllPostsByUser(User author) {
-//        return postRepository.findByAuthor(author)
-//                .stream()
-//                .map(PostMapper.INSTANCE::postToPostDto)
-//                .collect(Collectors.toList());
-//    }
+    @Override
+    public List<PostDto> getAllPostsByAuthor(User author) {
+        return postRepository.findAllByAuthor(author).stream()
+                .map(PostMapper.INSTANCE::postToPostDto)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public PostDto getPostById(int id) {
