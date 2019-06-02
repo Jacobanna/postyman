@@ -13,5 +13,4 @@ public class UserDto {
     private LocalDate dateJoined;
     private String email;
     //TODO czy chcę tu mieć Set<User> userFollows?
-
 }

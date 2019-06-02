@@ -1,6 +1,7 @@
 package com.jp.postyman.service;
 
 import com.jp.postyman.domain.User;
+import com.jp.postyman.mapper.UserMapper;
 import com.jp.postyman.model.UserDto;
 import com.jp.postyman.repository.UserRepository;
 import org.junit.Before;
@@ -14,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 public class UserServiceTest {

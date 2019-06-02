@@ -28,4 +28,10 @@ public class UserController {
     public UserDto getUserById(@PathVariable int id) {
         return userService.getUserById(id);
     }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        return userService.createUser(userDto);
+    }
 }
