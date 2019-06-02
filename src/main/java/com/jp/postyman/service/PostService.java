@@ -7,7 +7,7 @@ import com.jp.postyman.model.PostDto;
 import java.util.List;
 
 public interface PostService {
-    List<PostDto> getAllPostsByUser(User author);
+//    List<PostDto> getAllPostsByUser(User author);
     PostDto getPostById(int id);
 
 

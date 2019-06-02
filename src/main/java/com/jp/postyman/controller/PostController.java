@@ -18,12 +18,12 @@ public class PostController {
         this.postService = postService;
     }
 
-    //TODO this is not working - implement tests in repository, service and controller
-    @GetMapping("/user/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public PostDtoList getAllPostsByUser(@PathVariable User user) {
-        return new PostDtoList(postService.getAllPostsByUser(user));
-    }
+//    //TODO this is not working - implement tests in repository, service and controller
+//    @GetMapping("/user/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public PostDtoList getAllPostsByUser(@PathVariable User user) {
+//        return new PostDtoList(postService.getAllPostsByUser(user));
+//    }
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)

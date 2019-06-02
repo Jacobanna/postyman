@@ -61,7 +61,7 @@ public class UserServiceTest {
         user.setPassword(PASSWORD);
         user.setProfilePhotoUrl(PHOTO_URL);
         user.setDateJoined(DATE_JOINED);
-        when(userRepository.findById(anyInt())).thenReturn(Optional.of(user));
+        when(userRepository.findById(USER_ID)).thenReturn(Optional.ofNullable(user));
 
         //When
         UserDto userDto = userService.getUserById(USER_ID);
