@@ -20,18 +20,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllUsers() {
-        return userRepository.findAll().stream()
-                //To jest okej? Czy powinienem stworzyć obiekt UserMapper w tej klasie?
-                .map(userMapper::userToUserDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public UserDto getUserById(int id) {
         return userRepository.findById(id)
                 .map(userMapper::userToUserDto)
                 .orElseThrow(RuntimeException::new);
+    }
+
+    @Override
+    public List<UserDto> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(userMapper::userToUserDto)
+                .collect(Collectors.toList());
     }
 
     //TODO implement exceptions for name/email already used
@@ -58,7 +57,6 @@ public class UserServiceImpl implements UserService {
 
     private UserDto saveAndReturnUserDto(User user) {
         User savedUser = userRepository.save(user);
-        UserDto returnUserDto = userMapper.userToUserDto(savedUser);
-        return returnUserDto;
+        return userMapper.userToUserDto(savedUser);
     }
 }

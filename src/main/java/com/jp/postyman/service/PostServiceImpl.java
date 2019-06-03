@@ -19,16 +19,16 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPostsByAuthor(User author) {
-        return postRepository.findAllByAuthor(author).stream()
-                .map(PostMapper.INSTANCE::postToPostDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public PostDto getPostById(int id) {
         return postRepository.findById(id)
                 .map(PostMapper.INSTANCE::postToPostDto)
                 .orElseThrow(RuntimeException::new);
+    }
+
+    @Override
+    public List<PostDto> getAllPostsByAuthor(User author) {
+        return postRepository.findAllByAuthor(author).stream()
+                .map(PostMapper.INSTANCE::postToPostDto)
+                .collect(Collectors.toList());
     }
 }

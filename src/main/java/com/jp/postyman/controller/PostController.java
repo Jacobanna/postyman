@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(PostController.BASE_URL)
 public class PostController {
-    public static final String BASE_URL = "/v1/posts";
+    public static final String BASE_URL = "/v1";
 
     private final PostService postService;
 
@@ -19,13 +19,13 @@ public class PostController {
     }
 
 //    //TODO this is not working - implement tests in repository, service and controller
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/{id}/posts")
     @ResponseStatus(HttpStatus.OK)
     public PostDtoList getAllPostsByUser(@PathVariable User id) {
         return new PostDtoList(postService.getAllPostsByAuthor(id));
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/posts/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PostDto getPostById(@PathVariable int id) {
         return postService.getPostById(id);
