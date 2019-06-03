@@ -28,4 +28,10 @@ public class CommentController {
     public List<CommentDto> getAllCommentsByPost(@PathVariable Post post) {
         return commentService.getAllCommentsByPost(post);
     }
+
+//    @PostMapping("/posts/{post}/comments")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public UserDto createUser(@RequestBody UserDto userDto) {
+//        return userService.createUser(userDto);
+//    }
 }

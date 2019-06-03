@@ -10,4 +10,5 @@ public interface CommentMapper {
     CommentMapper INSTANCE = Mappers.getMapper(CommentMapper.class);
 
     CommentDto commentToCommentDto(Comment comment);
+    Comment commentDtoToComment(CommentDto commentDto);
 }
