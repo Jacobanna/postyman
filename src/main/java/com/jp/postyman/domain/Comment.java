@@ -16,7 +16,7 @@ public class Comment {
     private Post post;
     private String response;
     private String graphicUrl;
-    @OneToOne
+    @ManyToOne
     private User author;
     private LocalDateTime dateCommented;
 }

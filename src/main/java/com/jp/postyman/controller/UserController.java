@@ -34,4 +34,11 @@ public class UserController {
     public UserDto createUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
     }
+
+    //TODO this is not working, User author in Comment is not connected properly
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteUser(@PathVariable int id) {
+        userService.deleteUserById(id);
+    }
 }

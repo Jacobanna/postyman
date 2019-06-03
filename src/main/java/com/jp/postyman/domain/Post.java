@@ -18,7 +18,7 @@ public class Post {
     // wszystkie jego posty. Da się to jakoś zrobić bez tej drugiej strony połączenia? Albo po prostu ręcznie to
     // robić? W sensie jak będę miał DELETE na Userze to muszę zadbać o to żeby usunąć wszystkie jego posty?
     @ManyToOne
-    @JoinColumn(name = "author", nullable = false)
+    @JoinColumn(name = "author")
     private User author;
     private LocalDateTime datePosted;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")

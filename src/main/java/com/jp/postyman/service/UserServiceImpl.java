@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUserById(int id) {
-
+        userRepository.deleteById(id);
     }
 
     private UserDto saveAndReturnUserDto(User user) {
