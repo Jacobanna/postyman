@@ -41,6 +41,42 @@ public class CommentServiceImpl implements CommentService {
         return saveAndReturnCommentDto(commentMapper.commentDtoToComment(commentDto));
     }
 
+    //TODO implement Exceptions for not allowed fields
+    @Override
+    public CommentDto patchComment(int id, CommentDto commentDto) {
+        return commentRepository.findById(id).map(comment -> {
+            //TODO any way I can do this clean? Seems pretty bad
+//            if(Integer.MIN_VALUE <= commentDto.getCommentId() || commentDto.getCommentId() <= Integer.MAX_VALUE) {
+//                System.out.println("Cannot change comment ID.");
+//                return null;
+//            }
+            if(commentDto.getPost() != null) {
+                System.out.println("Cannot change in which post comment was created.");
+                return null;
+            }
+            if(commentDto.getResponse() != null) {
+                comment.setResponse(commentDto.getResponse());
+            }
+            if(commentDto.getGraphicUrl() != null) {
+                comment.setGraphicUrl(commentDto.getGraphicUrl());
+            }
+            if(commentDto.getAuthor() != null) {
+                System.out.println("Cannot change author of comment.");
+                return null;
+            }
+            if(commentDto.getDateCommented() != null) {
+                comment.setDateCommented(commentDto.getDateCommented());
+            }
+
+            return commentMapper.commentToCommentDto(commentRepository.save(comment));
+        }).orElseThrow(RuntimeException::new);
+    }
+
+    @Override
+    public void deleteCommentById(int id) {
+        commentRepository.deleteById(id);
+    }
+
     private CommentDto saveAndReturnCommentDto(Comment comment) {
         Comment savedComment = commentRepository.save(comment);
         return commentMapper.commentToCommentDto(savedComment);

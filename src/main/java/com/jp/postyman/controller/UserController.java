@@ -35,7 +35,7 @@ public class UserController {
         return userService.createUser(userDto);
     }
 
-    //TODO this is not working, User author in Comment is not connected properly
+    //TODO this is not working, User author in Comment is not connected properly?
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable int id) {

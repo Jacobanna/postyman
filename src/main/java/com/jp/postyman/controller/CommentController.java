@@ -20,18 +20,33 @@ public class CommentController {
     }
 
     @GetMapping("/comments/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public CommentDto getCommentById(@PathVariable int id) {
         return commentService.getCommentById(id);
     }
 
     @GetMapping("/posts/{post}/comments")
+    @ResponseStatus(HttpStatus.OK)
     public List<CommentDto> getAllCommentsByPost(@PathVariable Post post) {
         return commentService.getAllCommentsByPost(post);
     }
 
-//    @PostMapping("/posts/{post}/comments")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public UserDto createUser(@RequestBody UserDto userDto) {
-//        return userService.createUser(userDto);
-//    }
+    //TODO możesz zobaczyć w Postmanie moje @RequestBody? Tak jest w porządku?
+    @PostMapping("/comments")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CommentDto createComment(@RequestBody CommentDto commentDto) {
+        return commentService.createComment(commentDto);
+    }
+
+    @PatchMapping("/comments/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CommentDto patchComment(@PathVariable int id, @RequestBody CommentDto commentDto) {
+        return commentService.patchComment(id, commentDto);
+    }
+
+    @DeleteMapping("/comments/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCommentById(@PathVariable int id) {
+        commentService.deleteCommentById(id);
+    }
 }

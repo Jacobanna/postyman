@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    //TODO zmien na findByNameAndEmail
     //TODO implement exceptions for name/email already used
     @Override
     public UserDto createUser(UserDto userDto) {
