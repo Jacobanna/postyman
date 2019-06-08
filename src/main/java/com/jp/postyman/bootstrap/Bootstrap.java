@@ -129,6 +129,7 @@ public class Bootstrap implements CommandLineRunner {
         user1post1Comment1.setGraphicUrl("www.graphic1.jpg");
         user1post1Comment1.setAuthor(user2);
         user1post1Comment1.setDateCommented(LocalDateTime.now());
+        user1post1Comment1.setActive(true);
         commentRepository.save(user1post1Comment1);
 
         Comment user1post1Comment2 = new Comment();
@@ -138,6 +139,7 @@ public class Bootstrap implements CommandLineRunner {
         user1post1Comment2.setGraphicUrl("www.graphic2.jpg");
         user1post1Comment2.setAuthor(user3);
         user1post1Comment2.setDateCommented(LocalDateTime.now());
+        user1post1Comment2.setActive(true);
         commentRepository.save(user1post1Comment2);
 
         Comment user2post1Comment1 = new Comment();
@@ -147,6 +149,7 @@ public class Bootstrap implements CommandLineRunner {
         user2post1Comment1.setGraphicUrl("www.graphic3.jpg");
         user2post1Comment1.setAuthor(user3);
         user2post1Comment1.setDateCommented(LocalDateTime.now());
+        user2post1Comment1.setActive(true);
         commentRepository.save(user2post1Comment1);
 
         Comment user3post1Comment1 = new Comment();
@@ -155,6 +158,7 @@ public class Bootstrap implements CommandLineRunner {
         user3post1Comment1.setResponse("Incredible!");
         user3post1Comment1.setAuthor(user1);
         user3post1Comment1.setDateCommented(LocalDateTime.now());
+        user3post1Comment1.setActive(true);
         commentRepository.save(user3post1Comment1);
 
         System.out.println(commentRepository.count() + " elements added to Comments table.");

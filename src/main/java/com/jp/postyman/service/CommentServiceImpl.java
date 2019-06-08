@@ -24,6 +24,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentDto getCommentById(Long id) {
         return commentRepository.findById(id)
+                .filter(comment -> comment.isActive())
                 .map(CommentMapper.INSTANCE::commentToCommentDto)
                 .orElseThrow(RuntimeException::new);
     }
@@ -32,13 +33,16 @@ public class CommentServiceImpl implements CommentService {
     public List<CommentDto> getAllCommentsByPost(Post post) {
         return commentRepository.findAllByPost(post)
                 .stream()
+                .filter(comment -> comment.isActive())
                 .map(CommentMapper.INSTANCE::commentToCommentDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public CommentDto createComment(CommentDto commentDto) {
-        return saveAndReturnCommentDto(commentMapper.commentDtoToComment(commentDto));
+        Comment comment = commentMapper.commentDtoToComment(commentDto);
+        comment.setActive(true);
+        return saveAndReturnCommentDto(comment);
     }
 
     //TODO implement Exceptions for not allowed fields
@@ -46,7 +50,6 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentDto patchComment(Long id, CommentDto commentDto) {
         return commentRepository.findById(id).map(comment -> {
-            //TODO any way I can do this clean? Seems pretty bad
             if(commentDto.getCommentId() != null) {
                 System.out.println("Cannot change comment ID.");
                 return null;
@@ -73,9 +76,12 @@ public class CommentServiceImpl implements CommentService {
         }).orElseThrow(RuntimeException::new);
     }
 
+    //TODO implement exception handling
     @Override
     public void deleteCommentById(Long id) {
-        commentRepository.deleteById(id);
+        Comment comment = commentRepository.findById(id).orElseThrow(RuntimeException::new);
+        comment.setActive(false);
+        commentRepository.save(comment);
     }
 
     private CommentDto saveAndReturnCommentDto(Comment comment) {

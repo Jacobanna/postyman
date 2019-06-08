@@ -19,4 +19,5 @@ public class Comment {
     @ManyToOne
     private User author;
     private LocalDateTime dateCommented;
+    private boolean isActive;
 }
