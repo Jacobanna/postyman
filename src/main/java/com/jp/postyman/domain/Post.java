@@ -4,14 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Data
 @Entity(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int postId;
+    private Long postId;
     private String content;
     private String graphicUrl;
     //TODO Po usunięciu z Usera List<Post> posts nie potrafię zrobić DELETE CASCADE (jak usunę Usera chcę usunąć

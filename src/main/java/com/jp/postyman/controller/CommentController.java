@@ -21,7 +21,7 @@ public class CommentController {
 
     @GetMapping("/comments/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CommentDto getCommentById(@PathVariable int id) {
+    public CommentDto getCommentById(@PathVariable Long id) {
         return commentService.getCommentById(id);
     }
 
@@ -40,13 +40,13 @@ public class CommentController {
 
     @PatchMapping("/comments/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CommentDto patchComment(@PathVariable int id, @RequestBody CommentDto commentDto) {
+    public CommentDto patchComment(@PathVariable Long id, @RequestBody CommentDto commentDto) {
         return commentService.patchComment(id, commentDto);
     }
 
     @DeleteMapping("/comments/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteCommentById(@PathVariable int id) {
+    public void deleteCommentById(@PathVariable Long id) {
         commentService.deleteCommentById(id);
     }
 }

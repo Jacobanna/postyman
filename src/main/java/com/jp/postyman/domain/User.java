@@ -12,7 +12,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Long userId;
     private String name;
     private String password;
     private String profilePhotoUrl;
@@ -27,7 +27,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = userId;
+        int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (profilePhotoUrl != null ? profilePhotoUrl.hashCode() : 0);

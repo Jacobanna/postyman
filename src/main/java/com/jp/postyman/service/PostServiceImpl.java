@@ -19,7 +19,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto getPostById(int id) {
+    public PostDto getPostById(Long id) {
         return postRepository.findById(id)
                 .map(PostMapper.INSTANCE::postToPostDto)
                 .orElseThrow(RuntimeException::new);

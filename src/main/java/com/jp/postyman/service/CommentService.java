@@ -6,9 +6,9 @@ import com.jp.postyman.model.CommentDto;
 import java.util.List;
 
 public interface CommentService {
-    CommentDto getCommentById(int id);
+    CommentDto getCommentById(Long id);
     List<CommentDto> getAllCommentsByPost(Post post);
     CommentDto createComment(CommentDto commentDto);
-    CommentDto patchComment(int id, CommentDto commentDto);
-    void deleteCommentById(int id);
+    CommentDto patchComment(Long id, CommentDto commentDto);
+    void deleteCommentById(Long id);
 }

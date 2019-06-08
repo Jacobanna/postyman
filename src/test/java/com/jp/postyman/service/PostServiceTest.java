@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 public class PostServiceTest {
 
-    private static final int POST_ID = 1;
+    private static final Long POST_ID = 1L;
     private static final String CONTENT = "Look at this amazing view.";
     private static final String GRAPHIC_URL = "www.example/1.jpg";
     private static final LocalDateTime DATE_POSTED = LocalDateTime.now();

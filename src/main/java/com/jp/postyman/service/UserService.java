@@ -5,8 +5,8 @@ import com.jp.postyman.model.UserDto;
 import java.util.List;
 
 public interface UserService {
-    UserDto getUserById(int id);
+    UserDto getUserById(Long id);
     List<UserDto> getAllUsers();
     UserDto createUser(UserDto userDto);
-    void deleteUserById(int id);
+    void deleteUserById(Long id);
 }

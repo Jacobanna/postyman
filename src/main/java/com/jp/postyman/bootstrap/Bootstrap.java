@@ -29,7 +29,7 @@ public class Bootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) {
         User user1 = new User();
-        user1.setUserId(1);
+        user1.setUserId(1L);
         user1.setName("Anna");
         user1.setPassword("pooswa1");
         user1.setProfilePhotoUrl("www.example1.jpg");
@@ -38,7 +38,7 @@ public class Bootstrap implements CommandLineRunner {
         userRepository.save(user1);
 
         User user2 = new User();
-        user2.setUserId(2);
+        user2.setUserId(2L);
         user2.setName("Mark");
         user2.setPassword("sdkowao");
         user2.setProfilePhotoUrl("www.example2.jpg");
@@ -47,7 +47,7 @@ public class Bootstrap implements CommandLineRunner {
         userRepository.save(user2);
 
         User user3 = new User();
-        user3.setUserId(3);
+        user3.setUserId(3L);
         user3.setName("Bethany");
         user3.setPassword("djwkirwkqq1");
         user3.setProfilePhotoUrl("www.example3.jpg");
@@ -82,7 +82,7 @@ public class Bootstrap implements CommandLineRunner {
 
 
         Post user1Post1 = new Post();
-        user1Post1.setPostId(1);
+        user1Post1.setPostId(1L);
         user1Post1.setAuthor(user1);
         user1Post1.setContent("Such beautiful weather!!");
         user1Post1.setDatePosted(LocalDateTime.now());
@@ -90,7 +90,7 @@ public class Bootstrap implements CommandLineRunner {
         postRepository.save(user1Post1);
 
         Post user1Post2 = new Post();
-        user1Post2.setPostId(2);
+        user1Post2.setPostId(2L);
         user1Post2.setAuthor(user1);
         user1Post2.setContent("Hello guys in the world.");
         user1Post2.setDatePosted(LocalDateTime.now());
@@ -98,7 +98,7 @@ public class Bootstrap implements CommandLineRunner {
         postRepository.save(user1Post2);
 
         Post user2Post1 = new Post();
-        user2Post1.setPostId(3);
+        user2Post1.setPostId(3L);
         user2Post1.setAuthor(user2);
         user2Post1.setContent("Checkout my new walls.");
         user2Post1.setDatePosted(LocalDateTime.now());
@@ -106,14 +106,14 @@ public class Bootstrap implements CommandLineRunner {
         postRepository.save(user2Post1);
 
         Post user2Post2 = new Post();
-        user2Post2.setPostId(4);
+        user2Post2.setPostId(4L);
         user2Post2.setAuthor(user2);
         user2Post2.setContent("Feeling good.");
         user2Post2.setDatePosted(LocalDateTime.now());
         postRepository.save(user2Post2);
 
         Post user3Post1 = new Post();
-        user3Post1.setPostId(5);
+        user3Post1.setPostId(5L);
         user3Post1.setAuthor(user3);
         user3Post1.setContent("Amazing art.");
         user3Post1.setGraphicUrl("www.graphic4.jpg");
@@ -123,7 +123,7 @@ public class Bootstrap implements CommandLineRunner {
         System.out.println(postRepository.count() + " elements added to Posts table.");
 
         Comment user1post1Comment1 = new Comment();
-        user1post1Comment1.setCommentId(1);
+        user1post1Comment1.setCommentId(1L);
         user1post1Comment1.setPost(user1Post1);
         user1post1Comment1.setResponse("Ahahahha");
         user1post1Comment1.setGraphicUrl("www.graphic1.jpg");
@@ -132,7 +132,7 @@ public class Bootstrap implements CommandLineRunner {
         commentRepository.save(user1post1Comment1);
 
         Comment user1post1Comment2 = new Comment();
-        user1post1Comment2.setCommentId(2);
+        user1post1Comment2.setCommentId(2L);
         user1post1Comment2.setPost(user1Post1);
         user1post1Comment2.setResponse("Nice");
         user1post1Comment2.setGraphicUrl("www.graphic2.jpg");
@@ -141,7 +141,7 @@ public class Bootstrap implements CommandLineRunner {
         commentRepository.save(user1post1Comment2);
 
         Comment user2post1Comment1 = new Comment();
-        user2post1Comment1.setCommentId(3);
+        user2post1Comment1.setCommentId(3L);
         user2post1Comment1.setPost(user2Post1);
         user2post1Comment1.setResponse("WOW");
         user2post1Comment1.setGraphicUrl("www.graphic3.jpg");
@@ -150,7 +150,7 @@ public class Bootstrap implements CommandLineRunner {
         commentRepository.save(user2post1Comment1);
 
         Comment user3post1Comment1 = new Comment();
-        user3post1Comment1.setCommentId(4);
+        user3post1Comment1.setCommentId(4L);
         user3post1Comment1.setPost(user3Post1);
         user3post1Comment1.setResponse("Incredible!");
         user3post1Comment1.setAuthor(user1);

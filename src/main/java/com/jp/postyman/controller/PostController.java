@@ -27,7 +27,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PostDto getPostById(@PathVariable int id) {
+    public PostDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
 }

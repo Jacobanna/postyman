@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int commentId;
+    private Long commentId;
     @ManyToOne
     @JoinColumn(name = "post", nullable = false)
     private Post post;

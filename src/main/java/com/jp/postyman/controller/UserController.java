@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public UserDto getUserById(@PathVariable int id) {
+    public UserDto getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
@@ -38,7 +38,7 @@ public class UserController {
     //TODO this is not working, User author in Comment is not connected properly?
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable int id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteUserById(id);
     }
 }

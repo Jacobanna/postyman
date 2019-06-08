@@ -22,7 +22,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentDto getCommentById(int id) {
+    public CommentDto getCommentById(Long id) {
         return commentRepository.findById(id)
                 .map(CommentMapper.INSTANCE::commentToCommentDto)
                 .orElseThrow(RuntimeException::new);
@@ -42,14 +42,15 @@ public class CommentServiceImpl implements CommentService {
     }
 
     //TODO implement Exceptions for not allowed fields
+    //TODO Apache Commons - zamiast ifów
     @Override
-    public CommentDto patchComment(int id, CommentDto commentDto) {
+    public CommentDto patchComment(Long id, CommentDto commentDto) {
         return commentRepository.findById(id).map(comment -> {
             //TODO any way I can do this clean? Seems pretty bad
-//            if(Integer.MIN_VALUE <= commentDto.getCommentId() || commentDto.getCommentId() <= Integer.MAX_VALUE) {
-//                System.out.println("Cannot change comment ID.");
-//                return null;
-//            }
+            if(commentDto.getCommentId() != null) {
+                System.out.println("Cannot change comment ID.");
+                return null;
+            }
             if(commentDto.getPost() != null) {
                 System.out.println("Cannot change in which post comment was created.");
                 return null;
@@ -73,7 +74,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteCommentById(int id) {
+    public void deleteCommentById(Long id) {
         commentRepository.deleteById(id);
     }
 

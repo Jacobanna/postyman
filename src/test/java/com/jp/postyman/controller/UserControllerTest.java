@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     private static final String NAME = "Martha";
-    private static final int USER_ID = 1;
+    private static final Long USER_ID = 1L;
     private static final String EMAIL = "martha@email.com";
     private static final String PASSWORD = "koos";
     private static final String PHOTO_URL = "www.example/1.jpg";
@@ -49,7 +49,7 @@ public class UserControllerTest {
     @Test
     public void getAllUsers() throws Exception {
         UserDto userDto1 = new UserDto();
-        userDto1.setUserId(1);
+        userDto1.setUserId(1L);
         userDto1.setName("Adam");
         userDto1.setEmail("adam@email.com");
         userDto1.setPassword("pow1");
@@ -57,7 +57,7 @@ public class UserControllerTest {
         userDto1.setDateJoined(LocalDate.now());
 
         UserDto userDto2 = new UserDto();
-        userDto2.setUserId(2);
+        userDto2.setUserId(2L);
         userDto2.setName("Max");
         userDto2.setEmail("max@email.com");
         userDto2.setPassword("djskw");
@@ -65,7 +65,7 @@ public class UserControllerTest {
         userDto2.setDateJoined(LocalDate.now());
 
         UserDto userDto3 = new UserDto();
-        userDto3.setUserId(3);
+        userDto3.setUserId(3L);
         userDto3.setName("David");
         userDto3.setEmail("david@email.com");
         userDto3.setPassword("jrkekew");
@@ -97,7 +97,7 @@ public class UserControllerTest {
         mockMvc.perform(get(UserController.BASE_URL + "/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userId", equalTo(USER_ID)))
+                .andExpect(jsonPath("$.userId", equalTo(1)))
                 .andExpect(jsonPath("$.name", equalTo(NAME)))
                 .andExpect(jsonPath("$.email", equalTo(EMAIL)))
                 .andExpect(jsonPath("$.password", equalTo(PASSWORD)))

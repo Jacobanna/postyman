@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 public class PostDto {
-    private int postId;
+    private Long postId;
     private String content;
     private String graphicUrl;
     private User author;

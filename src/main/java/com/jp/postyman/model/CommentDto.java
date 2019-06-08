@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class CommentDto {
-    private int commentId;
+    private Long commentId;
     private Post post;
     private String response;
     private String graphicUrl;

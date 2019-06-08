@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserById(int id) {
+    public UserDto getUserById(Long id) {
         return userRepository.findById(id)
                 .map(userMapper::userToUserDto)
                 .orElseThrow(RuntimeException::new);
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void deleteUserById(int id) {
+    public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
 

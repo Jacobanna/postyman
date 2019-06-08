@@ -22,7 +22,7 @@ public class UserServiceTest {
     private static final String NAME = "Max";
     private static final String EMAIL = "maxima@gmail.com";
     private static final String PASSWORD = "kowoiesaq1";
-    private static final int USER_ID = 1;
+    private static final Long USER_ID = 1L;
     private static final String PHOTO_URL = "www.example/3.jpg";
     private static final LocalDate DATE_JOINED = LocalDate.now();
 
