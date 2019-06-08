@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
     public CommentDto getCommentById(Long id) {
         return commentRepository.findById(id)
                 .filter(comment -> comment.isActive())
-                .map(CommentMapper.INSTANCE::commentToCommentDto)
+                .map(commentMapper::commentToCommentDto)
                 .orElseThrow(RuntimeException::new);
     }
 
@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.findAllByPost(post)
                 .stream()
                 .filter(comment -> comment.isActive())
-                .map(CommentMapper.INSTANCE::commentToCommentDto)
+                .map(commentMapper::commentToCommentDto)
                 .collect(Collectors.toList());
     }
 
@@ -49,7 +49,9 @@ public class CommentServiceImpl implements CommentService {
     //TODO Apache Commons - zamiast ifów
     @Override
     public CommentDto patchComment(Long id, CommentDto commentDto) {
-        return commentRepository.findById(id).map(comment -> {
+        return commentRepository.findById(id)
+                .filter(comment -> comment.isActive())
+                .map(comment -> {
             if(commentDto.getCommentId() != null) {
                 System.out.println("Cannot change comment ID.");
                 return null;

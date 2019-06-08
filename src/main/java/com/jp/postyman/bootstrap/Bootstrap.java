@@ -87,6 +87,7 @@ public class Bootstrap implements CommandLineRunner {
         user1Post1.setContent("Such beautiful weather!!");
         user1Post1.setDatePosted(LocalDateTime.now());
         user1Post1.setGraphicUrl("www.graphic1.jpg");
+        user1Post1.setActive(true);
         postRepository.save(user1Post1);
 
         Post user1Post2 = new Post();
@@ -95,6 +96,7 @@ public class Bootstrap implements CommandLineRunner {
         user1Post2.setContent("Hello guys in the world.");
         user1Post2.setDatePosted(LocalDateTime.now());
         user1Post2.setGraphicUrl("www.graphic2.jpg");
+        user1Post2.setActive(true);
         postRepository.save(user1Post2);
 
         Post user2Post1 = new Post();
@@ -103,6 +105,7 @@ public class Bootstrap implements CommandLineRunner {
         user2Post1.setContent("Checkout my new walls.");
         user2Post1.setDatePosted(LocalDateTime.now());
         user2Post1.setGraphicUrl("www.graphic3.jpg");
+        user2Post1.setActive(true);
         postRepository.save(user2Post1);
 
         Post user2Post2 = new Post();
@@ -110,6 +113,7 @@ public class Bootstrap implements CommandLineRunner {
         user2Post2.setAuthor(user2);
         user2Post2.setContent("Feeling good.");
         user2Post2.setDatePosted(LocalDateTime.now());
+        user2Post2.setActive(true);
         postRepository.save(user2Post2);
 
         Post user3Post1 = new Post();
@@ -118,6 +122,7 @@ public class Bootstrap implements CommandLineRunner {
         user3Post1.setContent("Amazing art.");
         user3Post1.setGraphicUrl("www.graphic4.jpg");
         user3Post1.setDatePosted(LocalDateTime.now());
+        user3Post1.setActive(true);
         postRepository.save(user3Post1);
 
         System.out.println(postRepository.count() + " elements added to Posts table.");

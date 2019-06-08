@@ -30,4 +30,22 @@ public class PostController {
     public PostDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
+
+    @PostMapping("/posts")
+    @ResponseStatus(HttpStatus.CREATED)
+    public PostDto createPost(@RequestBody PostDto postDto) {
+        return postService.createPost(postDto);
+    }
+
+    @PatchMapping("/posts/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PostDto patchPost(@PathVariable Long id, @RequestBody PostDto postDto) {
+        return postService.patchPost(id, postDto);
+    }
+
+    @DeleteMapping("posts/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePostById(@PathVariable Long id) {
+        postService.deletePostById(id);
+    }
 }

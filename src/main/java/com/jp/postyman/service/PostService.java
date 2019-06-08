@@ -9,4 +9,7 @@ import java.util.List;
 public interface PostService {
     PostDto getPostById(Long id);
     List<PostDto> getAllPostsByAuthor(User author);
+    PostDto createPost(PostDto postDto);
+    PostDto patchPost(Long id, PostDto postDto);
+    void deletePostById(Long id);
 }

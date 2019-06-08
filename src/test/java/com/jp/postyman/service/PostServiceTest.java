@@ -2,7 +2,9 @@ package com.jp.postyman.service;
 
 import com.jp.postyman.domain.Post;
 import com.jp.postyman.domain.User;
+import com.jp.postyman.mapper.PostMapper;
 import com.jp.postyman.model.PostDto;
+import com.jp.postyman.repository.CommentRepository;
 import com.jp.postyman.repository.PostRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +26,8 @@ public class PostServiceTest {
     private static final String GRAPHIC_URL = "www.example/1.jpg";
     private static final LocalDateTime DATE_POSTED = LocalDateTime.now();
     PostService postService;
+    PostMapper postMapper;
+    CommentRepository commentRepository;
 
     @Mock
     PostRepository postRepository;
@@ -33,7 +37,7 @@ public class PostServiceTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        postService = new PostServiceImpl(postRepository);
+        postService = new PostServiceImpl(postRepository, postMapper, commentRepository);
     }
 
     @Test

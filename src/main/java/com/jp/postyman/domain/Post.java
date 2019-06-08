@@ -20,6 +20,7 @@ public class Post {
     @JoinColumn(name = "author")
     private User author;
     private LocalDateTime datePosted;
+    private boolean isActive;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
 //    private Set<Comment> comments;
 }
