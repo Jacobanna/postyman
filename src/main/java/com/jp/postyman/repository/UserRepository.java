@@ -5,5 +5,5 @@ import com.jp.postyman.model.UserDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-//    UserDto findUserByUserIdAndIsActive();
+    User findUserByUserId(Long id);
 }

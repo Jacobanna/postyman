@@ -35,6 +35,7 @@ public class Bootstrap implements CommandLineRunner {
         user1.setProfilePhotoUrl("www.example1.jpg");
         user1.setDateJoined(LocalDate.now());
         user1.setEmail("anna@email.com");
+        user1.setActive(true);
         userRepository.save(user1);
 
         User user2 = new User();
@@ -44,6 +45,7 @@ public class Bootstrap implements CommandLineRunner {
         user2.setProfilePhotoUrl("www.example2.jpg");
         user2.setDateJoined(LocalDate.now());
         user2.setEmail("mark@email.com");
+        user2.setActive(true);
         userRepository.save(user2);
 
         User user3 = new User();
@@ -53,6 +55,7 @@ public class Bootstrap implements CommandLineRunner {
         user3.setProfilePhotoUrl("www.example3.jpg");
         user3.setDateJoined(LocalDate.now());
         user3.setEmail("bethany@email.com");
+        user3.setActive(true);
         userRepository.save(user3);
 
         System.out.println(userRepository.count() + " elements added to Users table.");

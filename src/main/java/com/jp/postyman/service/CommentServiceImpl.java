@@ -82,8 +82,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteCommentById(Long id) {
         Comment comment = commentRepository.findById(id).orElseThrow(RuntimeException::new);
-        comment.setActive(false);
-        commentRepository.save(comment);
+        if(comment.isActive()) {
+            comment.setActive(false);
+            commentRepository.save(comment);
+        }
     }
 
     private CommentDto saveAndReturnCommentDto(Comment comment) {

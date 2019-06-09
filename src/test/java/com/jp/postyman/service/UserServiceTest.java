@@ -3,6 +3,8 @@ package com.jp.postyman.service;
 import com.jp.postyman.domain.User;
 import com.jp.postyman.mapper.UserMapper;
 import com.jp.postyman.model.UserDto;
+import com.jp.postyman.repository.CommentRepository;
+import com.jp.postyman.repository.PostRepository;
 import com.jp.postyman.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,12 +32,18 @@ public class UserServiceTest {
 
     @Mock
     UserRepository userRepository;
+    @Mock
+    UserMapper userMapper;
+    @Mock
+    PostRepository postRepository;
+    @Mock
+    CommentRepository commentRepository;
 
     //TODO dodać exception handling?
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        userService = new UserServiceImpl(userRepository);
+        userService = new UserServiceImpl(userRepository, userMapper, postRepository, commentRepository);
     }
 
     @Test

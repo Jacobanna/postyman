@@ -81,13 +81,15 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deletePostById(Long id) {
         Post post = postRepository.findById(id).orElseThrow(RuntimeException::new);
-        List<Comment> comments = commentRepository.findAllByPost(post);
-        comments.forEach(comment -> {
-            comment.setActive(false);
-            commentRepository.save(comment);
-        });
-        post.setActive(false);
-        postRepository.save(post);
+        if(post.isActive()) {
+            List<Comment> comments = commentRepository.findAllByPost(post);
+            comments.forEach(comment -> {
+                comment.setActive(false);
+                commentRepository.save(comment);
+            });
+            post.setActive(false);
+            postRepository.save(post);
+        }
     }
 
     private PostDto saveAndReturnPostDto(Post post) {

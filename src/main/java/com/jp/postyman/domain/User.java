@@ -24,6 +24,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "following_id"))
     private Set<User> userFollows;
+    private boolean isActive;
 
     @Override
     public int hashCode() {
@@ -33,6 +34,7 @@ public class User {
         result = 31 * result + (profilePhotoUrl != null ? profilePhotoUrl.hashCode() : 0);
         result = 31 * result + (dateJoined != null ? dateJoined.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (isActive ? 1 : 0);
         return result;
     }
 }

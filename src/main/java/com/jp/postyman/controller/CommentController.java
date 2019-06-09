@@ -31,7 +31,6 @@ public class CommentController {
         return commentService.getAllCommentsByPost(post);
     }
 
-    //TODO możesz zobaczyć w Postmanie moje @RequestBody? Tak jest w porządku?
     @PostMapping("/comments")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentDto createComment(@RequestBody CommentDto commentDto) {
