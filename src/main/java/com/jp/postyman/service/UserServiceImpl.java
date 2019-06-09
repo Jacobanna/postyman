@@ -3,10 +3,12 @@ package com.jp.postyman.service;
 import com.jp.postyman.domain.Comment;
 import com.jp.postyman.domain.Post;
 import com.jp.postyman.domain.User;
+import com.jp.postyman.domain.UserFollows;
 import com.jp.postyman.mapper.UserMapper;
 import com.jp.postyman.model.UserDto;
 import com.jp.postyman.repository.CommentRepository;
 import com.jp.postyman.repository.PostRepository;
+import com.jp.postyman.repository.UserFollowsRepository;
 import com.jp.postyman.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +21,15 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
+    private final UserFollowsRepository userFollowsRepository;
 
     public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, PostRepository postRepository,
-                           CommentRepository commentRepository) {
+                           CommentRepository commentRepository, UserFollowsRepository userFollowsRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
+        this.userFollowsRepository = userFollowsRepository;
     }
 
     @Override
@@ -89,9 +93,17 @@ public class UserServiceImpl implements UserService {
                 }
             });
             //3. Delete user following
-
+            List<UserFollows> userFollows = userFollowsRepository.findAllByUser(user);
+            userFollows.forEach(userFollows1 -> {
+                userFollows1.setActive(false);
+                userFollowsRepository.save(userFollows1);
+            });
             //4. Delete following user
-
+            List<UserFollows> followingUser = userFollowsRepository.findAllByFollower(user);
+            followingUser.forEach(followingUser1 -> {
+                followingUser1.setActive(false);
+                userFollowsRepository.save(followingUser1);
+            });
             //5. Delete user itself
             user.setActive(false);
             userRepository.save(user);

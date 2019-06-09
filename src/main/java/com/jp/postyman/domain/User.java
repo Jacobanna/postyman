@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -18,12 +19,18 @@ public class User {
     private String profilePhotoUrl;
     private LocalDate dateJoined;
     private String email;
+//    @JsonIgnore
+//    @ManyToMany
+//    @JoinTable(name = "users_following",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "following_id"))
+//    private Set<User> userFollows;
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "users_following",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "following_id"))
-    private Set<User> userFollows;
+    @OneToMany(mappedBy = "user")
+    private Set<UserFollows> userFollows = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "follower")
+    private Set<UserFollows> followingUser = new HashSet<>();
     private boolean isActive;
 
     @Override

@@ -3,8 +3,10 @@ package com.jp.postyman.bootstrap;
 import com.jp.postyman.domain.Comment;
 import com.jp.postyman.domain.Post;
 import com.jp.postyman.domain.User;
+import com.jp.postyman.domain.UserFollows;
 import com.jp.postyman.repository.CommentRepository;
 import com.jp.postyman.repository.PostRepository;
+import com.jp.postyman.repository.UserFollowsRepository;
 import com.jp.postyman.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,15 +21,19 @@ public class Bootstrap implements CommandLineRunner {
     private UserRepository userRepository;
     private PostRepository postRepository;
     private CommentRepository commentRepository;
+    private UserFollowsRepository userFollowsRepository;
 
-    public Bootstrap(UserRepository userRepository, PostRepository postRepository, CommentRepository commentRepository) {
+    public Bootstrap(UserRepository userRepository, PostRepository postRepository, CommentRepository
+            commentRepository, UserFollowsRepository userFollowsRepository) {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
+        this.userFollowsRepository = userFollowsRepository;
     }
 
     @Override
     public void run(String... args) {
+        //Creating users
         User user1 = new User();
         user1.setUserId(1L);
         user1.setName("Anna");
@@ -60,30 +66,38 @@ public class Bootstrap implements CommandLineRunner {
 
         System.out.println(userRepository.count() + " elements added to Users table.");
 
-        Set<User> user1Friends = new HashSet<>();
-        user1Friends.add(user2);
-        user1Friends.add(user3);
-        user1.setUserFollows(user1Friends);
-        userRepository.save(user1);
+        //Adding followers
+        UserFollows user1Follows2 = new UserFollows();
+        user1Follows2.setId(1L);
+        user1Follows2.setUser(user1);
+        user1Follows2.setFollower(user2);
+        user1Follows2.setActive(true);
+        userFollowsRepository.save(user1Follows2);
 
-        Set<User> user2Friends = new HashSet<>();
-        user2Friends.add(user3);
-        user2.setUserFollows(user2Friends);
-        userRepository.save(user2);
+        UserFollows user1Follows3 = new UserFollows();
+        user1Follows3.setId(2L);
+        user1Follows3.setUser(user1);
+        user1Follows3.setFollower(user3);
+        user1Follows3.setActive(true);
+        userFollowsRepository.save(user1Follows3);
 
-        Set<User> user3Friends = new HashSet<>();
-        user3Friends.add(user1);
-        user3.setUserFollows(user3Friends);
-        userRepository.save(user3);
+        UserFollows user2Follows3 = new UserFollows();
+        user2Follows3.setId(3L);
+        user2Follows3.setUser(user2);
+        user2Follows3.setFollower(user3);
+        user2Follows3.setActive(true);
+        userFollowsRepository.save(user2Follows3);
 
-        Set<User> user3FriendsAgain = new HashSet<>();
-        user3FriendsAgain.add(user1);
-        user3.setUserFollows(user3FriendsAgain);
-        userRepository.save(user3);
+        UserFollows user3Follows1 = new UserFollows();
+        user3Follows1.setId(4L);
+        user3Follows1.setUser(user3);
+        user3Follows1.setFollower(user1);
+        user3Follows1.setActive(true);
+        userFollowsRepository.save(user3Follows1);
 
         System.out.println("Connections between Users added.");
 
-
+        //Adding posts
         Post user1Post1 = new Post();
         user1Post1.setPostId(1L);
         user1Post1.setAuthor(user1);
@@ -130,6 +144,7 @@ public class Bootstrap implements CommandLineRunner {
 
         System.out.println(postRepository.count() + " elements added to Posts table.");
 
+        //Adding comments
         Comment user1post1Comment1 = new Comment();
         user1post1Comment1.setCommentId(1L);
         user1post1Comment1.setPost(user1Post1);
