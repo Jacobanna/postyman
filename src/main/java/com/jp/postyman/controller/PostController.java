@@ -18,7 +18,12 @@ public class PostController {
         this.postService = postService;
     }
 
-//    //TODO this is not working - implement tests in repository, service and controller
+    @PostMapping("/posts")
+    @ResponseStatus(HttpStatus.CREATED)
+    public PostDto createPost(@RequestBody PostDto postDto) {
+        return postService.createPost(postDto);
+    }
+
     @GetMapping("/users/{id}/posts")
     @ResponseStatus(HttpStatus.OK)
     public PostDtoList getAllPostsByUser(@PathVariable User id) {
@@ -29,12 +34,6 @@ public class PostController {
     @ResponseStatus(HttpStatus.OK)
     public PostDto getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
-    }
-
-    @PostMapping("/posts")
-    @ResponseStatus(HttpStatus.CREATED)
-    public PostDto createPost(@RequestBody PostDto postDto) {
-        return postService.createPost(postDto);
     }
 
     @PatchMapping("/posts/{id}")

@@ -17,6 +17,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        return userService.createUser(userDto);
+    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public UserDtoList getAllUsers() {
@@ -29,13 +35,12 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserDto createUser(@RequestBody UserDto userDto) {
-        return userService.createUser(userDto);
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDto patchUser(@PathVariable Long id, @RequestBody UserDto userDto) {
+        return userService.patchUser(id, userDto);
     }
 
-    //TODO this is not working, User author in Comment is not connected properly?
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable Long id) {

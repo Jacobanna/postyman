@@ -26,6 +26,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public PostDto createPost(PostDto postDto) {
+        Post post = postMapper.postDtoToPost(postDto);
+        post.setActive(true);
+        return saveAndReturnPostDto(post);
+    }
+
+    @Override
     public PostDto getPostById(Long id) {
         return postRepository.findById(id)
                 .filter(post -> post.isActive())
@@ -39,13 +46,6 @@ public class PostServiceImpl implements PostService {
                 .filter(post -> post.isActive())
                 .map(PostMapper.INSTANCE::postToPostDto)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public PostDto createPost(PostDto postDto) {
-        Post post = postMapper.postDtoToPost(postDto);
-        post.setActive(true);
-        return saveAndReturnPostDto(post);
     }
 
     //TODO implement Exceptions for not allowed fields

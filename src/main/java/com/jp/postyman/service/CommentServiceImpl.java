@@ -22,6 +22,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public CommentDto createComment(CommentDto commentDto) {
+        Comment comment = commentMapper.commentDtoToComment(commentDto);
+        comment.setActive(true);
+        return saveAndReturnCommentDto(comment);
+    }
+
+    @Override
     public CommentDto getCommentById(Long id) {
         return commentRepository.findById(id)
                 .filter(comment -> comment.isActive())
@@ -36,13 +43,6 @@ public class CommentServiceImpl implements CommentService {
                 .filter(comment -> comment.isActive())
                 .map(commentMapper::commentToCommentDto)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public CommentDto createComment(CommentDto commentDto) {
-        Comment comment = commentMapper.commentDtoToComment(commentDto);
-        comment.setActive(true);
-        return saveAndReturnCommentDto(comment);
     }
 
     //TODO implement Exceptions for not allowed fields

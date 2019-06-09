@@ -19,6 +19,12 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+    @PostMapping("/comments")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CommentDto createComment(@RequestBody CommentDto commentDto) {
+        return commentService.createComment(commentDto);
+    }
+
     @GetMapping("/comments/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CommentDto getCommentById(@PathVariable Long id) {
@@ -29,12 +35,6 @@ public class CommentController {
     @ResponseStatus(HttpStatus.OK)
     public List<CommentDto> getAllCommentsByPost(@PathVariable Post post) {
         return commentService.getAllCommentsByPost(post);
-    }
-
-    @PostMapping("/comments")
-    @ResponseStatus(HttpStatus.CREATED)
-    public CommentDto createComment(@RequestBody CommentDto commentDto) {
-        return commentService.createComment(commentDto);
     }
 
     @PatchMapping("/comments/{id}")

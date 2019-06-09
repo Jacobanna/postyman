@@ -7,9 +7,9 @@ import com.jp.postyman.model.PostDto;
 import java.util.List;
 
 public interface PostService {
+    PostDto createPost(PostDto postDto);
     PostDto getPostById(Long id);
     List<PostDto> getAllPostsByAuthor(User author);
-    PostDto createPost(PostDto postDto);
     PostDto patchPost(Long id, PostDto postDto);
     void deletePostById(Long id);
 }
